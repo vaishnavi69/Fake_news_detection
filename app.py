@@ -1,6 +1,6 @@
 from ast import If
 from pickle import TRUE
-from flask import Flask, request, render_template, url_for
+from flask import Flask,escape, request, render_template, url_for
 import pickle
 
 vector = pickle.load(open("vectorizer.pkl",'rb'))
@@ -19,7 +19,7 @@ def prediction():
         predict = model.predict(vector.transform([news]))[0]
         print(predict)
 
-        return render_template("prediction.html", prediction_text="news Result is->{}".format(predict))
+        return render_template("prediction.html", prediction_text="Label of text->{}".format(predict))
     else:
        return render_template('prediction.html')    
     
